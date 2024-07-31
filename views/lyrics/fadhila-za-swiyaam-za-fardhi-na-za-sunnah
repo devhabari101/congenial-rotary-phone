@@ -2,6 +2,7 @@
 layout    : post
 title     : Fadhila Za Swiyaam Za Fardhi Na Za Sunnah
 date      : 2024-05-19 07:35:05
+author    : Said Abdulkadir
 tags      : ["Sunnah", "Ibada"]
 --- 
 
@@ -22,251 +23,204 @@ Ili kuweza kuthibitishwa Github.com kwenye makala haya nita kuonyesha jinsi ya k
 
 
 
-**Kuhusu SSH**
-
-kwa kisa hiki tutakumbushana kidogo
-kuhusu **itifaki** hii ya **SSH**, unaweza kuanganishwa na kuthibitishwa kwenye **huduma na servers** 
-ambazo ziko mbali. 
-Kwa kutumia funguo za **SSH**, unaweza kuunganishwa **GitHub** bila kuweka jina lako la mtumiaji au token yako binafsi 
-inayo kuwezesha kufikia huduma mbalimbali kila unapotembelea **GitHub**.
-
-Ukiwa unaweka **SSH**, itakubidi utengeneze funguo mpya za **SSH** na uziongeze kwenye `ssh-agent`. 
-
-**Nilazima** uziongeze funguo za **SSH**
-kwenye `account` yako ya GitHub kabla ya kuzitumia fuguo kwa `uthibitisho`.
-
-### Angali kama tayari unafunguo za SSH
-
-Nijambo la busara kabla ya kutegeneza fungu za **SSH**, tukaanza na kuangalia kama tunafunguo zozote zile 
-za **SSH** kwenye mfumo wetu.
-
-Nilazima uwe na kifurushi cha **ssh-server** ilikuweza kuendelea mbele kuanzia hapa, kama uko kwenye mfumo
-unaotumia **Debian** utafanya hivi kwenye terminal yako ili kuweka kifurushi cha **ssh-server** kama huna.
-{% highlight "shell" %}
-apt install openssh-server 
-
-{% endhighlight %}
-
-Katika hali ya kawaida, ifuatayo ni orotha ya majina ya funguo za **umma** zilizo wezeshwa **GitHub**. 
-
-{% highlight "shell" %}
-id_rsa.pub
-id_ecdsa.pub
-id_ed25519.pub
-{% endhighlight %}
-
-Ili kuangalia kama unafunguo zozote zile za **umma "public"** za **SSH** fanya hivi kuziorothesha
-{% highlight "shell" %}
-ls -al ~/.ssh 
-{% endhighlight %}
- 
-Unaweza kutengeneza funguo mpya za **SSH** au uka sasisha funguo uliyonayo.
-
-Kama huna peya ya funguo zinazokubalika kama za **umma** au **binafsi**, au hutaki kutumia funguo zozote zile katika orotha 
-ya funguo ulizonazo, tengeneza funguo mpya za **SSH**.
-
-Kama unaona una peya ya funguo ya **umma** na **binafsi** kweyenye orotha (mfn, `id_rsa.pub na id_rsa`)
-ombazo ugependa kutumia ili kuunganishwa GitHub, unaweza ukaiongezea funguo kwenye `ssh-agent`.
-
-Tengeneza funguo mpya za **SSH** nauziongeze kwenye `ssh-agent`
-
-Baada yakuangalia kama unafungo za **SSH**, unaweza ukatengeneza funguo mpya za **SSH** ili kutumia kwajili ya `uthibitisho`, 
-alafu uka zioengeza kwenye `ssh-agent`.
-
-### Tengeneza funguo mpya za **SSH** 
-
-{% highlight "shell" %}
-ssh-keygen -t ed25519 -C "email.yako@mail.com"
-{% endhighlight %}
-
-*Kama unatumia mfumo wa zamani ambo haukubali algorithm za `Ed25519`, unaweza kutumia:*
-
-{% highlight "shell" %}
-$ ssh-keygen -t rsa -b 4096 -C "email.yako@mail.com"
-{% endhighlight %}
-*natumia algorithm za `Ed25519`*
-
-{% highlight "shell" %}
-Generating public/private ed25519 key pair.
-Enter file in which to save the key (/root/.ssh/id_ed25519): # Bofya enter
-Created directory '/root/.ssh'.
-Enter passphrase (empty for no passphrase): # weka neno la siri
-Enter same passphrase again: # rudia neno la siri
-Your identification has been saved in /root/.ssh/id_ed25519
-Your public key has been saved in /root/.ssh/id_ed25519.pub
-The key fingerprint is:
-SHA256:5FzPqheKEVVVVVVVVVVVcfsddsdsdk email.yako@mail.com
-The key's randomart image is:
-+--[ED25519 256]--+
-|       .     ..  |
-|      . .   ..   |
-|       o... .... |
-|      o+o..o+oB .|
-|     o @S. +oE.+.|
-|    o X O ..B oo |
-|     + B o.o +.  |
-|      + ... .    |
-|       ...       |
-+----[SHA256]-----+
-{% endhighlight %}
-
-
-
-Umekwisha tengeneza funguo zako za **SSH** na email imetumika kama label (alama)
-Nisisitize kabla yakuongeza funguo za **SSH** kwenye **ssh-agent** kusimamia funguo zako
-angalia kama unafunguo za **SSH** kama huna tengeneza.
-
-### Ongeza funguo zako za SSH kwenye ssh-agent
-
-Kama tunavyo fahamu `ssh-agent` inatumika kushikilia funguo binafsi za **server** ya mbali, 
-ambayo inaweza kutumika kufanya **uthibitisho** wa mashine yako.
-
-Azisha `ssh-agent` kwa nyuma ili tuweze kuitumi **terminal** hii kwa mambo mengine.
-
-{% highlight "shell" %}
-eval "$(ssh-agent -s)"
-Agent pid 676
-{% endhighlight %}
-Kutegemea na mazingira, unaweza kuhitaji kutumia command tofauti. 
-Mfn, umaweza ukawa unahitaji kuifikia kama **root** kwa kuweka `sudo -s -H` kabla yakuanzisha `ssh-agent`,
-au unaweza kutumia `exec ssh-agent bash` au `exec ssh-agent zsh` kuanzisha `ssh-agent`.
-
-
-**Kuongeza funguo zako binafsi za SSH kwenye ssh-agent fanya hivi.** 
-
-{% highlight "shell" %}
-ssh-add ~/.ssh/id_ed25519
-Enter passphrase for /root/.ssh/id_ed25519:
-Identity added: /root/.ssh/id_ed25519 (email.yako@mail.com)
-{% endhighlight %}
-
-Kama umetengeneza **funguo** zako najina jingine, 
-au unaongeza funguo iliyokwisha kuwepo ambayo inajina tofauti, 
-badilisha `id_ed25519` kwenye command na jina la **funguo** yako binafsi.
-
-
-## Ongeza funguo mpya ya SSH kwenye account yako ya GitHub
-
-Ili kui configure account yako ya GitHub.com kutumia **funguo** yako mpya (au iliyoko) ya **SSH**, 
-itakubidi uiongeze hiyo funguo kwenye **account** yako.
-
-
-**Copy** funguo zako za **umma** za **SSH**.
-
-Kama faili la fungo zako za **umma** za **SSH** lina jina tofauti na code nilizotumia hapa kama mfano, 
-badilisha jina kuendana namazigira yako. 
-Wakati una **copy** fuguo, hakikisha huongezi **mstari mpya au nafasi**.
-
-{% highlight "shell" %}
-cat ~/.ssh/id_ed25519.pub
-ssh-ed25519 AAAAC3NzaXVVVscxxxvvvvvvdddsss email.yako@mail.com
-{% endhighlight %}
-
-Nenda **Github** 
-Kwenye Upade wajuu kona ya kulia, bofya kwenye picha ya **profile** yako, kisha bofya **Settings**.
-
-![github_settings_za_mumiaji](https://i.ibb.co/zxwcHtF/Git-Hub-user-settings.png)
-
-
-Kwenye **sidebar** section ya **"Access"**, bofya SSH na GPG keys.
-
-![github ssh gpg keys](https://i.ibb.co/W3j7s2s/SSH-and-GPG-keys.png)
-
-Bofya**New SSH key**.
-
-![github ssh](https://i.ibb.co/L5mTw7r/github-SSH-and-GPG-keys.png)
-
-kwenye field ya "Title", weka label au alama inayo eleweka kawaajili ya fuguo zako mpya. 
-Paste fuguo zako kwene field ya funguo usisahu kubofya Add SSH key.
-
-![github_add-ssh_keys](https://i.ibb.co/tKLKDzX/Add-new-SSH-keys.png)
-
-
-Utahitaji kuthibitisha password yako ya GitHub.
-
-## Jaribisha connection yako ya SSH 
-
-Baada ya kuweka **funguo** zako za **SSH** kwenye account yako ya GitHub, ni mdaa wa majaribio.
-Wakati tunafanya majaribio ya connection, itatulazimu **kukithibitisha** hiki kitendo kwakutumia 
-**neno siri "password"**, ombayo ni **neno siri la SSH** tulilo tengeneza hapo awali.
-
-{% highlight "shell" %}
-ssh -T git@github.com
-{% endhighlight %}
-
-unaweza ukaona kitu kama hiki:
-
-{% highlight "shell" %}
-
-Enter passphrase for key '/root/.ssh/id_ed25519':
-> RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
-> Are you sure you want to continue connecting (yes/no)? # sema yes
-
-
-Hi devduara0! You've successfully authenticated, but GitHub does not provide shell access.
-{% endhighlight %}
-
-## ku sukuma project yako Github bada ya ku SSH
-
-kama unapush project kutokea kwenye mashine yako kwenda github utafanya hivi
-
-{% highlight "shell" %}
-
-git remote set-url origin git@github.com:devduara0/friendly-adventure.git
-{% endhighlight %}
-
-*Badilisha jina la mtumiaji na jina la hadhina ziendane na mazingira yako*
-
-**sukuma code Github**
-
-{% highlight "shell" %}
-git push --set-upstream origin master
-{% endhighlight %}
-
-
-## JINSI YAKU TENGENEZA HADHINA PACHA "CLONE" KWA KUTUMIA SSH
-Kutengeneza **hadhina pacha "repository cloning** kwa kutumia **SSH** ni rahisi sana,
-hususani kama tayari unafahamu kutengeneza **pacha** kwa kutumia itifaki ya **HTTPS**.
-*Lakini kama hufahamu usiwaze...*
+Kila amali njema atendayo Muislamu inalipwa na Allaah (Subhaanahu wa Ta'aalaa) mara kumi yake, isipokuwa Swawm  ambayo malipo yake ni makhsusi kutoka kwa Allaah (Subhaanahu wa Ta'aalaa) kama ilivyothibiti katika Hadiyth:
 
  
-* 🕷 **Zingatio** *hakikisha unaweza* **kuunganishwa** na kufanyiwa **uthibitisho Github** kwa kutumia itifaki ya **SSH**
- kama nilivyo eleza hapo awali.
 
-**Kama** kuna hazina ambayo iko **Github** tayari alafu unataka upate **pacha** 
-wa hiyo hazina ambapo **pacha** huyo atakaa kwenye machine yako lakini badala yakutumia 
-**itifaki** ya `HTTPS` au `GitHub CLI` unataka kutumia `SSH`, 
-fanya hivi:
  
 
+عنْ أَبِي هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ: ((كُلُّ عَمَلِ ابْنِ آدَمَ يُضَاعَفُ الْحَسَنَةُ عَشْرُ أَمْثَالِهَا إِلَى سَبْعمِائَة ضِعْفٍ قَالَ اللَّهُ عَزَّ وَجَلَّ إِلَّا الصَّوْمَ فَإِنَّهُ لِي وَأَنَا أَجْزِي بِهِ))  
 
-Nenda kwenye **hazina** yoyote ile ya **Github** ambayo unataka uitolee **pacha** ambaye atakaa kwenye machine yako
-**Bofya** kitufe kilicho andikwa **code** alafu **utubofya** kitufe kilicho andikwa **SSH**
-![tengeneza-pacha_wa_hazina](https://i.ibb.co/JqRgjzD/Github-clone1.png)
+Imepokewa kutoka kwa Abuu Hurayrah (Radhwiya Allaahu ‘anhu): ((Kila ‘amali njema ya mwana Aadam inalipwa mara kumi na inaongezewa thawabu kutoka kumi hadi mia saba, na Allaah (‘Azza wa Jalla) Anasema: Isipokuwa Swawm, kwani hiyo ni kwa ajili Yangu na Mimi Ndiye Nitakayemlipa]  [Muslim na Ahmad]
 
+ 
 
+Juu ya hivyo Swawm ina fadhila tele adhimu kama ifuatavyo:
 
-Mara bada ya kubofya kitufe kilicho andikwa **SSH** kama account yako haijawezeshwa na itifaki ya **SSH**  kama nilivyo elezea hapo awali utaona ujumbe kama huu
+ 
 
-![img_github](https://i.ibb.co/T4sDwSD/Github-clone2.png) 
+عَنْ أَبي ذَرٍّ رَضِيَ اللهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللهِ صَلَّى اللهُ عَلَيهِ وَسَلَّمَ:((مَنْ صَامَ مِنْ كُلِّ شَهْرٍ ثَلاثَةَ أَيَّامٍ فَذَلِكَ صِيَامُ الدَّهْرِ)) فَأَنْزَلَ اللهُ تُصْدِيقَ ذَلِكَ في كِتَابِهِ الْكَرِيمِ: ((مَنْ جَاءَ بِالْحَسَنَةِ فَلَهُ عَشْرُ أَمْثَالِهَا))، الْيَوْمُ بِعَشَرَةِ أَيّامٍ. أخرجه أحمد والترمذي وقال حديث حسن ، والنسائي وابن ماجه وابن خزيمة
 
-Nahapo hutaweza kutumia **SSH** mpaka **funguo** za **SSH** ziwe zimewezeshwa kwenye **account** yako ya **Github** kama nilivyo
-kwisha kueleza.
+Imepokelewa kutoka kwa Abuu Dharr (Radhwiya Allaahu ‘anhu) kwamba Rasuli wa Allaah (Swalla Allaahu ‘alayhi wa aalihi wa sallam) amesema: ((Yeyote atakayefunga (Swawm) kila mwezi siku tatu, ni sawa na Swawm ya milele)) Kisha Allaah Akateremsha Aayah ithibitishayo hayo:
 
-Vinginevyo utaona kitu kama hiki, nahapo utakua salama kuendelea mbele kwa kukopi hiyo adresi ya hadhina
+ 
 
-![img_github](https://i.ibb.co/521ww8k/Github-clone3.png)
+مَنْ جَاءَ بِالْحَسَنَةِ فَلَهُ عَشْرُ أَمْثَالِهَا
 
-**Utarudi** kwenye `terminal` yako naku **paste** hiyo adresi kama hivi,
+ 
 
-{% highlight "shell" %}
-git clone git@github.com:kazz54/artist-db.git
-Cloning into 'artist-db'...
-Enter passphrase for key '/root/.ssh/id_ed25519': # weka neno siri  
-{% endhighlight %}
+“Atakayekuja kwa 'amali nzuri basi atapata (thawabu) kumi mfano wa hiyo.” Siku moja kwa malipo ya siku kumi. [Imepokewa na At-Tirmidhiy na amesema Hadiyth Hasan, An Nasaaiy na Ibn Maajah, Ibn Khuzaymah na ameisahihisha Al-Albaaniy katika Al-Irwaa (4/102)]. Aayah: Suwrat Al-An’aam (160)]
 
-**Hakikisha** una anza na command `git clone`
-ndiyo namna yakuifahamisha **Github** kwamba unatengeneza **hadhina pacha** *jina la mtumiaji*
-pamoja na *jina la hadhina* vinategemea hiyo `hadhina` unayo itolea `pacha`, badili kutokana na mazingira yako
-bilakusahau kuweka `neno siri`.
+ 
 
+Miongoni mwa Swiyaam za Sunnah ni Swiyaam za Ayyaamul-Biydhw kwa dalili ya Hadiyth:
+
+ 
+
+عَنْ جريرٍ رَضِيَ اللهُ عَنْهُ عَن النَّبِيِّ صَلَّى اللهُ عَلَيهِ وَسَلَّمَ قَالَ: ((صِيَامُ ثَلاثَةِ أَيَّامٍ مِنْ كُلِّ شَهْرٍ صِيَامُ الدَّهْرِ، أَيَّامُ الْبِيضِ صَبِيحَةَ ثَلاثَ عَشَرَةَ وَأَرْبَعَ عَشَرَةَ وَخَمْسَ عشَرَةَ))   
+
+Imepokelewa kutoka kwa Jariyr (Radhwiya Allaahu ‘anhu) kwamba Nabiy (Swalla Allaahu ‘alayhi wa aalihi wa sallam) amesema: ((Swiyaam siku tatu kila mwezi ni sawa na swiyaam ya milele; na masiku meupe ni tarehe kumi na tatu, kumi na nne na kumi na tano [13, 14, 15])) [An-Nasaaiy (2420) na ameisahihisha Al-Albaaniy katika Swahiyh At-Targhiyb (1040)]
+
+ 
+
+Maana Ya Al-Biydhw:  Masiku hayo yameitwa ‘Al-Biydhw’ (meupe) sababu usiku wa siku hizo hung'aa kutokana na mwanga wa mwezi. Ayyaam Al-Biydhw (Masiku Meupe) tarehe zake ni 13, 14 na 15 katika kila mwezi wa kalenda ya Kiislamu.
+
+ 
+
+Na Nabiy (Swalla Allaahu 'alayhi wa aalihi wa sallam) akasisitiza kufunga Swiyaam siku tatu katika kila mwezi, ikiwa ni Ayyaamul-biydhw au Jamatatu na Alkhamiys au siku zozote zile katika mwezi:
+
+ 
+
+عن أبي ذر رضي الله عنه: قال لي رسول الله صلى الله عليه وسلم : ((يَا أَبَا ذَرٍّ، إِذَا صُمْتَ مِنَ الشَّهْرِ ثَلاثَةَ أَيَّامٍ فَصُمْ ثَلاثَةَ عَشَرَ وَأَرْبَعَةَ عَشَرَ وَخَمْسَةَ))
+
+Imepokelewa kutoka kwa Abuu Dharr (Radhwiya Allaahu ‘anhu) ambaye amesema: Rasuli wa Allaah (Swalla Allaahu ‘alayhi wa aalihi wa sallam) aliniambia: ((Ee Abuu Dharr! Endapo utafunga (Swawm) siku tatu za kila mwezi, basi funga siku ya 13, ya 14, na ya 15)) [Imepokewa na At-Tirmidhiy na kasema Al-Albaaniy kuwa ni Swahiyh]
+
+ 
+
+Na pia:
+
+ 
+
+قال صلى الله عليه وسلم: ((أَلا أُخْبِرُكُمْ بِمَا يُذْهِبُ وَحَرَ الصَّدْرِ صَوْمُ ثَلاثَةِ أَيَّامٍ مِنْ كُلِّ شَهْر))
+
+Rasuli wa Allaah (Swalla Allaahu ‘alayhi wa aalihi wa sallam) amesema: ((Je, nikujulisheni jambo litakaloondosha uovu wa moyo? Ni kufunga (Swawm) siku tatu kila mwezi)) [An-Nasaaiy (2/2386) na ameisahihisha Al-Albaaniy katika Swahiyh An-Nasaaiy (2249)]
+
+ 
+
+Asw-Suyuutwiy (Rahimahu Allaah) amesema katika An-Nihaayah: “Uovu wa moyo ni; udanganyifu, wasiwasi, na imesemwa pia ni uhasidi, chuki, na imesemwa pia uadui na imesemwa ghadhabu”
+
+ 
+
+ 
+
+Fadhila Za  Swawm Jumatatu Na Alkhamiys:
+
+ 
+
+عن أبي هريرة رضي الله عنه: تُعرَضُ الأعمالُ يومَ الاثنينِ والخميسِ فأحبُّ أن يُعرَضَ عملي وأنا صائمٌ
+
+Imepokelewa kutoka kwa Abuu Hurayrah (Radhwiya Allaahu 'anhu) kwamba Nabiy (Swalla Allaahu 'alayhi wa aalihi wa sallam) amesema: “Amali zinapandishwa siku ya Jumatatu na Alkhamiys, basi napenda kwamba zipandishwe 'amali zangu nikiwa mimi nina Swawm.” [Swahiyh At-Tirmidhiy 747, Swahiyh At-Targhiyb 1041]
+
+ 
+
+Na kuhusu Swiyaam ya Jumatatu:
+
+ 
+
+عَنْ أَبِي قَتَادَةَ الْأَنْصَارِيِّ رَضِيَ اللَّهُ عَنْهُ أَنَّ رَسُولَ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ سُئِلَ عَنْ صَوْمِ الِاثْنَيْنِ فَقَالَ: ((فِيهِ وُلِدْتُ وَفِيهِ أُنْزِلَ عَلَيَّ)).
+
+Kutoka kwa Abuu Qataadah Al-Answaariyy (Radhwiya Allaahu 'anhu) kwamba Rasuli wa Allaah (Swalla Allaahu 'alayhi wa aalihi wa sallam) aliulizwa kuhusu Swawm ya Jumatatu akasema: “Nimezaliwa siku hiyo na siku hiyo nimeteremshiwa (Qur-aan).” [Muslim]
+
+ 
+
+ 
+
+Baadhi ya fadhila nyinginezo za Swawm:
+
+ 
+
+1. Kufunga (Swawm) ni kuepushwa na moto masafa ya miaka sabini.
+
+ 
+
+عَنْ أَبِي سَعِيدٍ الْخُدْرِيِّ رضي الله عنه قَالَ : قَالَ رَسُولُ اللَّهِ صلى الله عليه وسلم: مَنْ صَامَ يَوْماً فِي سَبِيلِ اللَّهِ بَعَّدَ اللَّهُ وَجْهَهُ عَنْ النَّارِ سَبْعِينَ خَرِيفًا .
+
+Imepokelewa kutoka kwa Abuu Sa’iyd Al-Khudriyy (Radhwiya Allaahu ‘anhu) amesema: “Rasuli wa Allaah (Swalla Allaahu ‘alayhi wa aalihi wa sallam) amesema: ((Atakayefunga  Swawm siku moja kwa ajili ya Allaah, Allaah Atamweka mbali uso wake na moto masafa ya miaka sabini)) [Muslim 2/208]
+
+ 
+
+Na katika Hadiyth nyingine pia:
+
+ 
+
+عن جابر رضِي الله عنه عن النبيِّ  صلى الله عليه وسلم  قال: ((الصِّيام جُنَّة يَستَجِنُّ بها العبدُ من النار))   
+
+Imepokelewa kutoka kwa Jaabir (Radhwiya Allaahu ‘anhu) kutoka kwa Nabiy (Swalla Allaahu ‘alayhi wa aalihi wa sallam) amesema: ((Swiyaam ni kinga itamuokoa mja kutokana na moto [wa Siku ya Qiyaamah])) [Ahmad 2/402, Swahiyh At-Targhiyb 1/411 na Swahiyh Al-Jaami’ 3880]
+
+ 
+
+ 
+
+2. Mwenye Swawm atafunguliwa mlango wa Rayyaan huko Jannah (Peponi)
+
+ 
+
+ 
+
+عَنْ سَهْلٍ رَضِيَ اللَّهُ عَنْهُ عَنْ النَّبِيِّ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ قَالَ: ((إِنَّ فِي الْجَنَّةِ بَابًا يُقَالُ لَهُ الرَّيَّانُ يَدْخُلُ مِنْهُ الصَّائِمُونَ يَوْمَ الْقِيَامَةِ لَا يَدْخُلُ مِنْهُ أَحَدٌ غَيْرُهُمْ يُقَالُ أَيْنَ الصَّائِمُونَ فَيَقُومُونَ لَا يَدْخُلُ مِنْهُ أَحَدٌ غَيْرُهُمْ فَإِذَا دَخَلُوا أُغْلِقَ فَلَمْ يَدْخُلْ مِنْهُ أَحَدٌ ))
+
+Imepokelewa kutoka kwa Sahl (Radhwiya Allaahu ‘anhu) kutoka kwa Nabiy (Swalla Allaahu ‘alayhi wa aalihi wa sallam) amesema: ((Hakika katika Jannah (Peponi) kuna mlango unaitwa Rayyaan, wataingia humo siku ya Qiyaamah wenye kufunga (Swawm), hatoingia yeyote mwingine. Itasemwa: “Wako wapi waliokuwa wakifunga? Watasimama kuingia hatoingia yeyote mwengine, watakapoingia, utafungwa, basi hatoingia mwengine)) [Al-Bukhaariy 1763, Muslim 1947]
+
+ 
+
+ 
+
+ 
+
+3. Swawm ni kwa ajili ya Allaah Pekee
+
+ 
+
+Na mwenye Swawm hupata furaha mbili; anapofuturu na atakapokutana na Rabb Wake. Na harufu ya mdomo wake ni nzuri mbele ya Allaah kuliko harufu ya misk.
+
+ 
+
+ 
+
+عنْ أَبِي هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ: ((كُلُّ عَمَلِ ابْنِ آدَمَ يُضَاعَفُ الْحَسَنَةُ عَشْرُ أَمْثَالِهَا إِلَى سَبْعمِائَة ضِعْفٍ قَالَ اللَّهُ عَزَّ وَجَلَّ إِلَّا الصَّوْمَ فَإِنَّهُ لِي وَأَنَا أَجْزِي بِهِ يَدَعُ شَهْوَتَهُ وَطَعَامَهُ مِنْ أَجْلِي لِلصَّائِمِ فَرْحَتَانِ فَرْحَةٌ عِنْدَ فِطْرِهِ وَفَرْحَةٌ عِنْدَ لِقَاءِ رَبِّهِ وَلَخُلُوفُ فِيهِ أَطْيَبُ عِنْدَ اللَّهِ مِنْ رِيحِ الْمِسْكِ))
+
+Imepokewa kutoka kwa Abuu Hurayrah (Radhwiya Allaahu ‘anhu): ((Kila 'amali njema ya mwana Aadam inalipwa mara kumi na inaongezewa thawabu kutoka kumi hadi mia saba, na Allaah (‘Azza wa Jalla) Anasema: Isipokuwa Swawm, kwani hiyo ni kwa ajili Yangu na Mimi Ndiye Nitakayemlipa; ameacha matamanio yake na chakula chake kwa ajili Yangu. Kwa anayefunga atapata furaha mbili; furaha anapofuturu na furaha atakapoonana na Rabb wake, harufu inayotoka kinywani mwa aliye na Swawm ni nzuri mbele ya Allaah kuliko harufu ya misk)) [Muslim na Ahmad]
+
+ 
+
+ 
+
+4. Du’aa ya mwenye Swawm inakubaliwa.
+
+ 
+
+عَنْ أَبِي هُرَيْرَةَ (رضي الله عنه) قَالَ: قَالَ رَسُولُ اللَّهِ (صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ): ((ثَلاَثَةٌ لاَ تُرَدُّ دَعْوَتُهُمْ,  الإِمَامُ الْعَادِلُ, وَالصَّائِمُ حَتَّى يُفْطِرَ, وَدَعْوَةُ الْمَظْلُومِ ...))
+
+Kutoka kwa Abuu Hurayrah (Radhwiya Allaahu ‘anhu) amesema: Rasuli wa Allaah (Swalla Allaahu ‘alayhi wa aalihi wa sallam) amesema: (([Watu] Watatu hazirudishwi du'aa zao; Imaam muadilifu, mwenye Swawm mpaka afuturu, na du'aa ya aliyedhulumiwa…)) [Ahmad na Ibn Maajah. Pia Al-Bayhaqiy 3/345 na As-Silsilah Asw-Swahiyhah 1797]
+
+ 
+
+ 
+
+5. Swawm itakuombea shafaa-‘ah Siku ya Qiyaamah.
+
+ 
+
+عَنْ عَبْدِ اللَّهِ بْنِ عَمْرٍو رضي الله عنهما أَنَّ رَسُولَ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ قَالَ: ((الصِّيَامُ وَالْقُرْآنُ يَشْفَعَانِ لِلْعَبْدِ يَوْمَ الْقِيَامَةِ، يَقُولُ الصِّيَامُ:  أَيْ رَبِّ مَنَعْتُهُ الطَّعَامَ وَالشَّهَوَاتِ بِالنَّهَارِ فَشَفِّعْنِي فِيهِ.  وَيَقُولُ الْقُرْآنُ: مَنَعْتُهُ النَّوْمَ بِاللَّيْلِ فَشَفِّعْنِي فِيهِ.  قَالَ : فَيُشَفَّعَانِ))
+
+Imepokelewa kutoka  kwa 'Abdullaah bin ‘Amr  (Radhwiya Allaahu ‘anhumaa)  kwamba Rasuli wa Allaah (Swalla Allaahu ‘alayhi wa aalihi wa sallam) amesema: ((Swiyaam na Qur-aan zitamuombea shafaa’ah mja siku ya Qiyaamah. Swiyaam itasema: “Ee ee Rabb!  Nimemzuia chakula chake na matamanio wakati wa mchana, basi nnamuombea shafaa-‘ah.” Na Qur-aan itasema: “Nimemzuia usingizi wake wakati wa usiku basi nnamuombea shafaa-‘ah.” Akasema: ((Basi [viwili hivyo] vinaombea shafaa-‘ah na kukubaliwa]. [Ahmad (174/2) Al-Haakim (1/554), Al-Bayhaqiy (3/181) na ameisahihisha Al-Albaaniy katika Swahiyh Al-Jaamiy’ 7329]
+
+ 
+
+ 
+
+6. Swawm hakuna mfano wake.
+
+ 
+
+عَنْ أَبِي أُمَامَةَ  قَالَ: أَتَيْتُ رَسُولَ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ، فَقُلْتُ: مُرْنِي بِأَمْرٍ آخُذُهُ عَنْكَ قَالَ: ((عَلَيْكَ بِالصَّوْمِ فَإِنَّهُ لَا مِثْلَ لَهُ))  
+
+Kutoka kwa Abuu Umaamah (Radhwiya Allaahu ‘anhu) amesema: Nilimwendea Rasuli wa Allaah (Swalla Allaahu ‘alayhi wa aalihi wa sallam) nikasema: “Niamrishe jambo [litakalonifaa Aakhirah] nilichukue kwako.” Akasema: ((Shikilia Swawm kwani hakika hakuna mfano wake)) [An-Nasaaiy]
+
+ 
+
+ 
+
+7. Ukifariki ukiwa katika Swawm utaingia Jannah
+
+ 
+
+Nayo ni Husnul-Khaatimah.
+
+ 
+
+عن حذيفة  رضي الله عنه أن النبي صلى الله عليه وسلم قَال: ((مَن خُتِمَ له بصيام يومٍ دخل الجنة))
+
+Imepokelewa kutoka kwa Hudhayfah (Radhwiya Allaahu ‘anhu) kutoka kwa Nabiy (Swalla Allaahu ‘alayhi wa aalihi wa sallam) amesema: ((Atakayekuwa 'amali yake ya mwisho kabla ya kufariki ni Swiyaam ataingia Jannah)) [Ahmad 5/391. Swahiyh At-Targhiyb 1/412, Swahiyh Al-Jaami’ 6224]
+
+ 
