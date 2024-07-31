@@ -27,10 +27,10 @@ Kila amali njema atendayo Muislamu inalipwa na Allaah (Subhaanahu wa Ta'aalaa) m
 
  
 
- 
+{% highlight "shell" %} 
 
 عنْ أَبِي هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ: ((كُلُّ عَمَلِ ابْنِ آدَمَ يُضَاعَفُ الْحَسَنَةُ عَشْرُ أَمْثَالِهَا إِلَى سَبْعمِائَة ضِعْفٍ قَالَ اللَّهُ عَزَّ وَجَلَّ إِلَّا الصَّوْمَ فَإِنَّهُ لِي وَأَنَا أَجْزِي بِهِ))  
-
+{% endhighlight %}
 Imepokewa kutoka kwa Abuu Hurayrah (Radhwiya Allaahu ‘anhu): ((Kila ‘amali njema ya mwana Aadam inalipwa mara kumi na inaongezewa thawabu kutoka kumi hadi mia saba, na Allaah (‘Azza wa Jalla) Anasema: Isipokuwa Swawm, kwani hiyo ni kwa ajili Yangu na Mimi Ndiye Nitakayemlipa]  [Muslim na Ahmad]
 
  
@@ -38,15 +38,16 @@ Imepokewa kutoka kwa Abuu Hurayrah (Radhwiya Allaahu ‘anhu): ((Kila ‘amali n
 Juu ya hivyo Swawm ina fadhila tele adhimu kama ifuatavyo:
 
  
-
+{% highlight "shell" %}
 عَنْ أَبي ذَرٍّ رَضِيَ اللهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللهِ صَلَّى اللهُ عَلَيهِ وَسَلَّمَ:((مَنْ صَامَ مِنْ كُلِّ شَهْرٍ ثَلاثَةَ أَيَّامٍ فَذَلِكَ صِيَامُ الدَّهْرِ)) فَأَنْزَلَ اللهُ تُصْدِيقَ ذَلِكَ في كِتَابِهِ الْكَرِيمِ: ((مَنْ جَاءَ بِالْحَسَنَةِ فَلَهُ عَشْرُ أَمْثَالِهَا))، الْيَوْمُ بِعَشَرَةِ أَيّامٍ. أخرجه أحمد والترمذي وقال حديث حسن ، والنسائي وابن ماجه وابن خزيمة
-
+{% endhighlight %}
 Imepokelewa kutoka kwa Abuu Dharr (Radhwiya Allaahu ‘anhu) kwamba Rasuli wa Allaah (Swalla Allaahu ‘alayhi wa aalihi wa sallam) amesema: ((Yeyote atakayefunga (Swawm) kila mwezi siku tatu, ni sawa na Swawm ya milele)) Kisha Allaah Akateremsha Aayah ithibitishayo hayo:
 
  
 
+{% highlight "shell" %}
 مَنْ جَاءَ بِالْحَسَنَةِ فَلَهُ عَشْرُ أَمْثَالِهَا
-
+{% endhighlight %}
  
 
 “Atakayekuja kwa 'amali nzuri basi atapata (thawabu) kumi mfano wa hiyo.” Siku moja kwa malipo ya siku kumi. [Imepokewa na At-Tirmidhiy na amesema Hadiyth Hasan, An Nasaaiy na Ibn Maajah, Ibn Khuzaymah na ameisahihisha Al-Albaaniy katika Al-Irwaa (4/102)]. Aayah: Suwrat Al-An’aam (160)]
@@ -56,9 +57,9 @@ Imepokelewa kutoka kwa Abuu Dharr (Radhwiya Allaahu ‘anhu) kwamba Rasuli wa Al
 Miongoni mwa Swiyaam za Sunnah ni Swiyaam za Ayyaamul-Biydhw kwa dalili ya Hadiyth:
 
  
-
+{% highlight "shell" %}
 عَنْ جريرٍ رَضِيَ اللهُ عَنْهُ عَن النَّبِيِّ صَلَّى اللهُ عَلَيهِ وَسَلَّمَ قَالَ: ((صِيَامُ ثَلاثَةِ أَيَّامٍ مِنْ كُلِّ شَهْرٍ صِيَامُ الدَّهْرِ، أَيَّامُ الْبِيضِ صَبِيحَةَ ثَلاثَ عَشَرَةَ وَأَرْبَعَ عَشَرَةَ وَخَمْسَ عشَرَةَ))   
-
+{% endhighlight %}
 Imepokelewa kutoka kwa Jariyr (Radhwiya Allaahu ‘anhu) kwamba Nabiy (Swalla Allaahu ‘alayhi wa aalihi wa sallam) amesema: ((Swiyaam siku tatu kila mwezi ni sawa na swiyaam ya milele; na masiku meupe ni tarehe kumi na tatu, kumi na nne na kumi na tano [13, 14, 15])) [An-Nasaaiy (2420) na ameisahihisha Al-Albaaniy katika Swahiyh At-Targhiyb (1040)]
 
  
